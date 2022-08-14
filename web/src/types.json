@@ -1,0 +1,27 @@
+[{
+  "snail": "aac",
+  "category": "audio",
+  "filter": {
+    "itemType": "file",
+    "category": "audio"
+  },
+  "itemType": "file"
+},
+{
+  "snail": "bmp",
+  "category": "image",
+  "filter": {
+    "itemType": "file",
+    "category": "image"
+  },
+  "itemType": "file"
+},
+{
+  "snail": "png",
+  "category": "image",
+  "filter": {
+    "itemType": "file",
+    "category": "image"
+  },
+  "itemType": "file"
+}]

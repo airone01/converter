@@ -1,10 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
+import { Category } from "../FileType";
 import SvgImage from "./SvgImage";
+import './FileMenuItem.css'
 
 interface Props {
   snail: string,
   vanity: string,
-  icon: 'document' | 'image',
+  icon: Category,
   color: string,
   layer: 1 | 2
 }
@@ -18,6 +20,7 @@ export default function FileMenuItem({
 }: Props) {
   return (
     <Link
+      className="lenk"
       style={{
         display: "inline-block",
         margin: "0 1rem",
@@ -46,14 +49,10 @@ export default function FileMenuItem({
 function getUrl(s: string, n: number): string {
   const l = useLocation().pathname
 
-  if (l === '/') {
+  if ((l === '/' || n === 1) && l.split('/')[1] !== s) {
     return `/${s}`
-  } else if (n === 1 && l.split('/').length === 2) {
-    return `/${s}`
-  } else if (n === 1 && l.split('/').length === 4) {
-    const list = l.split('/')
-    list[1] = s
-    return list.join('/')
+  } else if ((l === '/' || n === 1) && l.split('/')[1] === s) {
+    return l
   } else if (n === 2) {
     const list = l.split('/')
     list[2] = 'to'

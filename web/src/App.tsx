@@ -1,20 +1,34 @@
-import { Outlet, useLocation } from 'react-router-dom'
+import { ReactElement } from 'react'
+import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
-import ShyButton from './components/ShyButton'
-import ShyFooter from './components/ShyFooter'
 
 export default function App() {
+  const path = useLocation().pathname
+  const snail = path.split('/')[1]
+
+  let element: ReactElement
+  if (
+    ((path !== "/about") && (snail.startsWith('a'))) ) {
+    element = (<>
+      <h3>my file is an...</h3>
+      <FileMenu layer={1} />
+    </>)
+  } else if (path !== "/about") {
+    element = (<>
+      <h3>my file is a...</h3>
+      <FileMenu layer={1} />
+    </>)
+  } else {
+    element = (<></>)
+  }
+
   return (
     <div className="App">
       <h1>noconverter</h1>
-      <ShyButton />
-      { useLocation().pathname !== "/about" ? (<>
-        <h3>my file is a...</h3>
-        <FileMenu layer={1} />
-      </>) : null }
+      {element}
       <Outlet />
-      <ShyFooter />
+      <Link to="/about" className="card">about</Link>
     </div>
   )
 }

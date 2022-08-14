@@ -7,14 +7,15 @@ import {
 import App from './App'
 import './index.css'
 import FileMenu from './components/FileMenu';
+import About from './routes/about';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>
     <Routes>
+      <Route path="about" element={<About />} />
       <Route path="/" element={<App />}>
-        <Route path="about" element={<></>} />
         <Route path="*" element={<>
-          <h3>...and I'm converting to...</h3>
+          <h3>...and i'm converting to...</h3>
           <FileMenu layer={2} />
         </>}>
         </Route>
