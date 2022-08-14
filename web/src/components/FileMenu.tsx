@@ -5,6 +5,7 @@ import data from '../types.json'
 
 const config = data as FileFormat[]
 
+// functionnal component properties
 interface Props {
   layer: 1 | 2,
 }

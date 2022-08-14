@@ -3,6 +3,7 @@ import { Category } from "../FileType";
 import SvgImage from "./SvgImage";
 import './FileMenuItem.css'
 
+// functionnal component properties
 interface Props {
   snail: string,
   vanity: string,
@@ -35,6 +36,7 @@ export default function FileMenuItem({
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          // set the border color
           borderColor: useLocation().pathname.split('/')[layer === 1 ? 1 : 3] === snail ? color : undefined
         }}
         type="button"
@@ -46,6 +48,7 @@ export default function FileMenuItem({
   )
 }
 
+// get the url for the button to redirect to
 function getUrl(s: string, n: number): string {
   const l = useLocation().pathname
 

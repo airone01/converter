@@ -1,11 +1,13 @@
 import { ReactElement } from "react"
 import { Category } from "../FileType"
 
+// functionnal component properties
 interface Props {
   image: Category,
   color?: string
 }
 
+// the svg image to show
 export default function SvgImage({ image, color }: Props) {
   color = color || "currentColor"
   let imageEl: ReactElement
