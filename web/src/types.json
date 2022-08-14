@@ -17,6 +17,15 @@
   "itemType": "file"
 },
 {
+  "snail": "mp3",
+  "category": "audio",
+  "filter": {
+    "itemType": "file",
+    "category": "audio"
+  },
+  "itemType": "file"
+},
+{
   "snail": "png",
   "category": "image",
   "filter": {
