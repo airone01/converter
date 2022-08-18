@@ -8,6 +8,7 @@ interface Props {
   snail: string,
   vanity: string,
   icon: Category,
+  category: Category,
   color: string,
   layer: 1 | 2
 }
@@ -16,9 +17,12 @@ export default function FileMenuItem({
   snail,
   vanity,
   icon,
+  category,
   color,
   layer
 }: Props) {
+  const correctColor = `var(--file-${category})`
+
   return (
     <Link
       className="lenk"
@@ -31,17 +35,18 @@ export default function FileMenuItem({
       key={snail}
     >
       <button
+        className={`filemenuitem-${category}`}
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           // set the border color
-          borderColor: useLocation().pathname.split('/')[layer === 1 ? 1 : 3] === snail ? color : undefined
+          borderColor: useLocation().pathname.split('/')[layer === 1 ? 1 : 3] === snail ? correctColor : undefined
         }}
         type="button"
       >
-        <SvgImage image={icon} color={color} />
+        <SvgImage image={icon} color={correctColor} />
         <p>{vanity}</p>
       </button>
     </Link>

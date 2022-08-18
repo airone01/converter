@@ -36,14 +36,14 @@ export default function FileMenu({ layer }: Props) {
 
         switch (e.category) {
           case 'audio':
-            color = e.color || '#ffce90'
+            color = e.color || 'var(--file-audio)'
             break
           case 'image':
-            color = e.color || '#aaaaff'
+            color = e.color || 'var(--file-image)'
             break
           default:
           case 'document':
-            color = e.color || 'white'
+            color = e.color || 'var(--file-document)'
             break
         }
 
@@ -54,6 +54,7 @@ export default function FileMenu({ layer }: Props) {
           vanity={e.vanity || e.snail.toUpperCase() }
           icon={e.icon || e.category || 'document'}
           color={color}
+          category={e.category || 'document'}
           key={i}
         />
     )})}</div>);
