@@ -1,0 +1,21 @@
+.uploadButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.2em;
+}
+
+.uploadButton p {
+    font-size: larger;
+    font-weight: 800;
+    color: white;
+}
+
+.uploadButton svg {
+    height: 1.5em;
+    padding-left: 0.5em;
+}
+
+.uploadButton:hover {
+    border: 2px solid white;
+}
