@@ -3,6 +3,7 @@ import { ReactElement, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
+import Marble from './components/Marble'
 
 const ffmpeg = createFFmpeg({
   corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
@@ -41,11 +42,13 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>noconverter</h1>
+      <div className='marble-pack'>
+        <Marble on={ffmpegReady} title="ffmpeg"/>
+      </div>
+      <h1 className="app-title">noconverter</h1>
       {element}
       <Outlet />
       <Link to="/about" className="card">about</Link>
-      {ffmpegReady ? 'FFMPEG LOADED !' : 'FFMPEG NOT READY'}
     </div>
   )
 }
