@@ -6,7 +6,7 @@ import FileMenu from './components/FileMenu'
 
 const ffmpeg = createFFmpeg({
   corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
-  log: true
+  log: import.meta.env.DEV // only in vite dev mode
 })
 
 export default function App() {
