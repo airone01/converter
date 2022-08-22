@@ -9,10 +9,6 @@ h1.app-title {
   margin-top: 0;
 }
 
-.card {
-  padding: 2em;
-}
-
 .marble-pack {
   display: flex;
   flex-direction: row;

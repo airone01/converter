@@ -1,9 +1,10 @@
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
-import { ReactElement, useEffect, useState } from 'react'
+import { ChangeEvent, ReactElement, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
 import Marble from './components/Marble'
+import UploadButton from './components/UploadButton'
 
 const ffmpeg = createFFmpeg({
   corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
@@ -15,6 +16,8 @@ export default function App() {
   const snail = path.split('/')[1];
 
   const [ffmpegReady, setFfmpegReady] = useState(false);
+
+  const [file, setFile] = useState<FileList>();
   
   // load ffmpeg (only once)
   useEffect(() => {
@@ -46,8 +49,10 @@ export default function App() {
         <Marble on={ffmpegReady} title="ffmpeg"/>
       </div>
       <h1 className="app-title">noconverter</h1>
+      <UploadButton setFile={setFile}/>
       {element}
       <Outlet />
+      <UploadButton setFile={setFile}/>
       <Link to="/about" className="card">about</Link>
     </div>
   )

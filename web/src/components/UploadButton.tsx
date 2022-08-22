@@ -1,12 +1,35 @@
+import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 import './UploadButton.css'
 
-export default function UploadButton() {
-    return (
-        <button className='uploadButton'>
-            <p>UPLOAD</p>
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-            </svg>
-        </button>
-    )
+type Props = {
+  setFile: Dispatch<SetStateAction<FileList | undefined>>
+}
+
+export default function UploadButton({ setFile }: Props) {
+  function uploadFiles(e: ChangeEvent<HTMLInputElement>) {
+    if (e.target.files !== null && e.target.files.length > 0) {
+      const test = e.target.files
+      setFile(() => test)
+    }
+  }
+
+  const inputFile = useRef<HTMLInputElement>(null)
+
+  return (
+    <div className="uploadButton-wrapper">
+      <button className="uploadButton" onClick={() => inputFile.current?.click()}>
+        <p>UPLOAD</p>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#AAAAAA" strokeWidth={3}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+        </svg>
+      </button>
+      <input
+        name="upload"
+        type="file"
+        ref={inputFile}
+        onChange={() => setFile}
+        placeholder="UPLOAD"
+      />
+    </div>
+  )
 }

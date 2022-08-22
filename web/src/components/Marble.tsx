@@ -5,12 +5,12 @@ type Props = {
   on: boolean
 }
 
-export default function Marble(props: Props) {
-  const ttip = props.title + " " + (props.on ? "loaded" : "loading...")
+export default function Marble({ title, on }: Props) {
+  const ttip = title + " " + (on ? "loaded" : "loading...")
 
   return (
     <div className="marble" title={ttip}>
-      {!props.on || (
+      {!on || (
         <div className="marble-loader" title={ttip}/>
       )}
     </div>
