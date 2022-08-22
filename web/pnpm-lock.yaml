@@ -11,6 +11,7 @@ specifiers:
   react-router-dom: ^6.3.0
   typescript: ^4.6.4
   vite: ^3.0.7
+  vite-plugin-cross-origin-isolation: ^0.1.6
 
 dependencies:
   '@ffmpeg/core': 0.11.0
@@ -25,6 +26,7 @@ devDependencies:
   '@vitejs/plugin-react': 2.0.1_vite@3.0.7
   typescript: 4.7.4
   vite: 3.0.7
+  vite-plugin-cross-origin-isolation: 0.1.6
 
 packages:
 
@@ -942,6 +944,10 @@ packages:
       browserslist: 4.21.3
       escalade: 3.1.1
       picocolors: 1.0.0
+    dev: true
+
+  /vite-plugin-cross-origin-isolation/0.1.6:
+    resolution: {integrity: sha512-OY0naW9nPUDrKTffYnY7FRYXOgZdHoNwMGpPxUmj/n32mGZi01fcq+J536jkmwGWX7DLT95XBQVHHbrAJzTvrw==}
     dev: true
 
   /vite/3.0.7:
