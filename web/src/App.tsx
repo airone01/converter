@@ -4,7 +4,10 @@ import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
 
-const ffmpeg = createFFmpeg({ log: true })
+const ffmpeg = createFFmpeg({
+  corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
+  log: true
+})
 
 export default function App() {
   const path = useLocation().pathname;
@@ -12,7 +15,7 @@ export default function App() {
 
   const [ffmpegReady, setFfmpegReady] = useState(false);
   
-  // run load() only once
+  // load ffmpeg (only once)
   useEffect(() => {
     (async () => {
       await ffmpeg.load();
