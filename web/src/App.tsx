@@ -1,5 +1,5 @@
 import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
-import { ChangeEvent, ReactElement, useEffect, useState } from 'react'
+import { ChangeEvent, Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
@@ -11,13 +11,15 @@ const ffmpeg = createFFmpeg({
   log: import.meta.env.DEV // only in vite dev mode
 })
 
-export default function App() {
+type Props = {
+  setFile: Dispatch<SetStateAction<FileList | undefined>>
+}
+
+export default function App({ setFile }: Props) {
   const path = useLocation().pathname;
   const snail = path.split('/')[1];
 
   const [ffmpegReady, setFfmpegReady] = useState(false);
-
-  const [file, setFile] = useState<FileList>();
   
   // load ffmpeg (only once)
   useEffect(() => {
@@ -52,7 +54,6 @@ export default function App() {
       <UploadButton setFile={setFile}/>
       {element}
       <Outlet />
-      <UploadButton setFile={setFile}/>
       <Link to="/about" className="card">about</Link>
     </div>
   )
