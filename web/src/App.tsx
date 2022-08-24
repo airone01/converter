@@ -54,7 +54,8 @@ export default function App({ setFile }: Props) {
       <UploadButton setFile={setFile}/>
       {element}
       <Outlet />
-      <Link to="/about" className="card">about</Link>
+      <div style={{ height: "1em" }} />
+      <Link to="/about" className="about">about this site</Link>
     </div>
   )
 }

@@ -15,3 +15,7 @@ h1.app-title {
   align-items: flex-end;
   justify-content: center;
 }
+
+.about {
+  font-weight: bold;
+}
