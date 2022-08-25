@@ -2,14 +2,14 @@ import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 import './UploadButton.css'
 
 type Props = {
-  setFile: Dispatch<SetStateAction<FileList | undefined>>
+  setFiles: (u: SetStateAction<FileList>) => void
 }
 
-export default function UploadButton({ setFile }: Props) {
+export default function UploadButton({ setFiles }: Props) {
   function uploadFiles(e: ChangeEvent<HTMLInputElement>) {
     if (e.target.files !== null && e.target.files.length > 0) {
       const test = e.target.files
-      setFile(() => test)
+      setFiles(() => test)
     }
   }
 
@@ -27,7 +27,7 @@ export default function UploadButton({ setFile }: Props) {
         name="upload"
         type="file"
         ref={inputFile}
-        onChange={() => setFile}
+        onChange={() => setFiles}
         placeholder="UPLOAD"
       />
     </div>
