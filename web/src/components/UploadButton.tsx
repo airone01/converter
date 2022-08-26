@@ -2,7 +2,7 @@ import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
 import './UploadButton.css'
 
 type Props = {
-  setFiles: (u: SetStateAction<FileList>) => void
+  setFiles: (u: SetStateAction<FileList | undefined>) => void
 }
 
 export default function UploadButton({ setFiles }: Props) {
