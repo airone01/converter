@@ -1,11 +1,33 @@
-import { ReactElement } from 'react'
+import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
+import { ChangeEvent, Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
+import Marble from './components/Marble'
+import UploadButton from './components/UploadButton'
 
-export default function App() {
-  const path = useLocation().pathname
-  const snail = path.split('/')[1]
+const ffmpeg = createFFmpeg({
+  corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
+  log: import.meta.env.DEV // only in vite dev mode
+})
+
+type Props = {
+  setFiles: (u: SetStateAction<FileList | undefined>) => void
+}
+
+export default function App({ setFiles }: Props) {
+  const path = useLocation().pathname;
+  const snail = path.split('/')[1];
+
+  const [ffmpegReady, setFfmpegReady] = useState(false);
+  
+  // load ffmpeg (only once)
+  useEffect(() => {
+    (async () => {
+      await ffmpeg.load();
+      setFfmpegReady(true);
+    })()
+  }, [])
 
   let element: ReactElement
   if (
@@ -25,10 +47,15 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>noconverter</h1>
+      <div className='marble-pack'>
+        <Marble on={ffmpegReady} title="ffmpeg"/>
+      </div>
+      <h1 className="app-title">noconverter</h1>
+      <UploadButton setFiles={setFiles}/>
       {element}
       <Outlet />
-      <Link to="/about" className="card">about</Link>
+      <div style={{ height: "1em" }} />
+      <Link to="/about" className="about">about this site</Link>
     </div>
   )
 }

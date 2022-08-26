@@ -1,27 +1,34 @@
 [{
   "snail": "aac",
   "category": "audio",
-  "filter": {
-    "itemType": "file",
-    "category": "audio"
-  },
+  "accepts": [
+    "mp3"
+  ],
   "itemType": "file"
 },
 {
   "snail": "bmp",
   "category": "image",
-  "filter": {
-    "itemType": "file",
-    "category": "image"
-  },
+  "accepts": [
+    "png",
+    "jpg"
+  ],
+  "itemType": "file"
+},
+{
+  "snail": "mp3",
+  "category": "audio",
+  "accepts": [
+    "aac"
+  ],
   "itemType": "file"
 },
 {
   "snail": "png",
   "category": "image",
-  "filter": {
-    "itemType": "file",
-    "category": "image"
-  },
+  "accepts": [
+    "bmp",
+    "jpg"
+  ],
   "itemType": "file"
 }]

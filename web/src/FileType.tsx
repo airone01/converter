@@ -10,10 +10,7 @@ export interface Format {
 }
 export interface FileFormat extends Format {
   snail: string
-  filter: {
-    itemType: ItemType
-    category: Category
-  }
+  accepts: string[]
   category?: Category
   color?: string
   icon?: Category
