@@ -10,4 +10,4 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - run: curl -X POST -d {} https://api.vercel.com/v1/integrations/deploy/prj_0WdVVAcFTdVlAIFcbv3PKWTzluua/LUrgzt5FM3
+    - run: curl -X POST -d {} https://api.vercel.com/v1/integrations/deploy/prj_5OswZvICUImlHQ5srooqla5IWcfo/sVv7BGbZO6
