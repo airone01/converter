@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom';
 import App from './App'
 import './index.css'
+import './nosites-style/index.css'
 import FileMenu from './components/FileMenu';
 import About from './routes/about';
 import { useEffect, useState } from 'react';

@@ -1,0 +1,6 @@
+[submodule "web/nosites-style"]
+	path = web/nosites-style
+	url = https://github.com/AirOne01/nosites-style.git
+[submodule "web/src/nosites-style"]
+	path = web/src/nosites-style
+	url = https://github.com/AirOne01/nosites-style.git
