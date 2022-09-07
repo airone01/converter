@@ -7,8 +7,7 @@ import Marble from './components/Marble'
 import UploadButton from './components/UploadButton'
 
 const ffmpeg = createFFmpeg({
-  corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
-  log: import.meta.env.DEV // only in vite dev mode
+  // corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
 })
 
 type Props = {
