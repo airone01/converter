@@ -17,6 +17,7 @@ set -e
 
 # get submodule commit
 output=$(git submodule status --recursive) # get submodule info
+echo "SUBMODULE INFO: $output"
 no_prefix=${output#*-} # get rid of the prefix
 COMMIT=${no_prefix% *} # get rid of the suffix
 
@@ -26,9 +27,13 @@ mkdir tmp # create the tmp folder
 cd tmp # go into the tmp folder
 
 # checkout the current submodule commit
+echo "Init repo..."
 git init # initialise empty repo
+echo "Add origin..."
 git remote add origin "https://$GITHUB_ACCESS_TOKEN@$SUBMODULE_GITHUB" # add origin of the submodule
+echo "Fetch repo..."
 git fetch --depth=1 origin "$COMMIT" # fetch only the required version
+echo "Check out..."
 git checkout "$COMMIT" # checkout on the right commit
 
 # move the submodule from tmp to the submodule path
