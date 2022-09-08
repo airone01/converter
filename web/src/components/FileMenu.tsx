@@ -1,5 +1,5 @@
 import FileMenuItem from "./FileMenuItem";
-import { Category, FileFormat, Format, ItemType } from "../FileType";
+import { FileFormat } from "../FileType";
 import { useLocation } from "react-router-dom";
 import data from '../types.json'
 

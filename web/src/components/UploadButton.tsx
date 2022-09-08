@@ -1,4 +1,4 @@
-import { ChangeEvent, Dispatch, SetStateAction, useRef } from 'react'
+import { SetStateAction, useRef } from 'react'
 import './UploadButton.css'
 
 type Props = {
@@ -6,13 +6,6 @@ type Props = {
 }
 
 export default function UploadButton({ setFiles }: Props) {
-  function uploadFiles(e: ChangeEvent<HTMLInputElement>) {
-    if (e.target.files !== null && e.target.files.length > 0) {
-      const test = e.target.files
-      setFiles(() => test)
-    }
-  }
-
   const inputFile = useRef<HTMLInputElement>(null)
 
   return (

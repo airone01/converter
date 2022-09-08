@@ -9,31 +9,13 @@ import './index.css'
 import './nosites-style/index.css'
 import FileMenu from './components/FileMenu';
 import About from './routes/about';
-import { useEffect, useState } from 'react';
 import UploadButton from './components/UploadButton';
-import { fileTypeFromBuffer, FileTypeResult } from 'file-type';
 import { createGlobalState } from 'react-hooks-global-state';
 
 const { useGlobalState } = createGlobalState<{ value: FileList | undefined }>({ value: undefined })
 
 function MainApp() {
-  const [files, setFiles] = useGlobalState('value');
-  let filesTypes: FileTypeResult[]
-
-  // useEffect(() => {
-  //   if (files === undefined) return // type safety
-  //   // TODO: handle no files
-  //   filesTypes = [];
-  //   (async () => {
-  //     for (const file of files) {
-  //       const fBuffer = await file.arrayBuffer()
-  //       const fType = await fileTypeFromBuffer(fBuffer)
-  //       if (fType === undefined) continue // type safety
-  //       filesTypes.push(fType)
-  //     }
-  //   })
-  // }, [setFiles])
-  
+  const [, setFiles] = useGlobalState('value');
 
   return (
     <BrowserRouter>
