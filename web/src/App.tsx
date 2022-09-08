@@ -22,6 +22,12 @@ export default function App({ setFiles }: Props) {
   
   // load ffmpeg (only once)
   useEffect(() => {
+    // check if is already loaded
+    if (ffmpeg.isLoaded()) {
+      setFfmpegReady(true)
+      return
+    }
+    // if not, load it
     (async () => {
       await ffmpeg.load();
       setFfmpegReady(true);
