@@ -9,6 +9,7 @@ specifiers:
   '@types/node': ^18.7.13
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
+  '@vercel/edge': ^0.0.4
   file-type: ^17.1.6
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -24,6 +25,7 @@ dependencies:
   '@testing-library/jest-dom': 5.16.5
   '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 13.5.0
+  '@vercel/edge': 0.0.4
   file-type: 17.1.6
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -2684,6 +2686,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.36.1
       eslint-visitor-keys: 3.3.0
+    dev: false
+
+  /@vercel/edge/0.0.4:
+    resolution: {integrity: sha512-KzZuSib25DsYjLa7UiMhAWfhfE9Oby1T90M0mkYMjCNK71i9vvEKRQXnhs3htmyNyid11KyI4wMEnIr7M9DqAA==}
     dev: false
 
   /@webassemblyjs/ast/1.11.1:
@@ -8141,12 +8147,6 @@ packages:
   /react-dev-utils/12.0.1_j7mri6brqo6jqc4rzvyyrslsmu:
     resolution: {integrity: sha512-84Ivxmr17KjUupyqzFode6xKhjwuEJDROWKJy/BthkL7Wn6NJ8h4WE6k/exAv6ImS+0oZLRRW5j/aINMHyeGeQ==}
     engines: {node: '>=14'}
-    peerDependencies:
-      typescript: '>=2.7'
-      webpack: '>=4'
-    peerDependenciesMeta:
-      typescript:
-        optional: true
     dependencies:
       '@babel/code-frame': 7.18.6
       address: 1.2.0
@@ -8177,7 +8177,9 @@ packages:
     transitivePeerDependencies:
       - eslint
       - supports-color
+      - typescript
       - vue-template-compiler
+      - webpack
     dev: false
 
   /react-dom/18.2.0_react@18.2.0:
