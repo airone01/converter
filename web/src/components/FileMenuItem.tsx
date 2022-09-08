@@ -31,7 +31,7 @@ export default function FileMenuItem({
         margin: "0 1rem",
         marginBottom: "2rem",
       }}
-      to={getUrl(snail, layer)}
+      to={useGetUrl(snail, layer)}
       key={snail}
     >
       <button
@@ -54,7 +54,7 @@ export default function FileMenuItem({
 }
 
 // get the url for the button to redirect to
-function getUrl(s: string, n: number): string {
+function useGetUrl(s: string, n: number): string {
   const l = useLocation().pathname
 
   if ((l === '/' || n === 1) && l.split('/')[1] !== s) {

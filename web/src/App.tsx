@@ -1,5 +1,5 @@
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg'
-import { ChangeEvent, Dispatch, ReactElement, SetStateAction, useEffect, useState } from 'react'
+import { createFFmpeg } from '@ffmpeg/ffmpeg'
+import { ReactElement, SetStateAction, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
@@ -7,8 +7,7 @@ import Marble from './components/Marble'
 import UploadButton from './components/UploadButton'
 
 const ffmpeg = createFFmpeg({
-  corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
-  log: import.meta.env.DEV // only in vite dev mode
+  // corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
 })
 
 type Props = {

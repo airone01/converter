@@ -1,0 +1,3 @@
+[submodule "web2/src/nosites-style"]
+	path = web/src/nosites-style
+	url = https://github.com/NoSites/style.git

@@ -15,7 +15,7 @@ export default function About() {
     <h2>who made this ?</h2>
     <p>me, airone01<br />
     i'm an IT student with a little time off</p>
-    <a href='https://github.com/AirOne01'><img src="https://img.shields.io/badge/check%20my%20stuff%20out-242424?style=for-the-badge&logo=github&logoColor=white" /></a>
+    <a href='https://github.com/AirOne01'><img alt='Check my stuff out on Github' src="https://img.shields.io/badge/check%20my%20stuff%20out-242424?style=for-the-badge&logo=github&logoColor=white" /></a>
     <h2>will you use next.js...</h2>
     <p>...or any other cool new js thingy ?</p>
     <p>no. simple is most of the time better.<br />
