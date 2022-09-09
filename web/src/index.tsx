@@ -12,20 +12,32 @@ import About from './routes/about';
 import UploadButton from './components/UploadButton';
 import { createGlobalState } from 'react-hooks-global-state';
 
-const { useGlobalState } = createGlobalState<{ value: FileList | undefined }>({ value: undefined })
+const { useGlobalState } = createGlobalState<{ value: ArrayBuffer[] | undefined }>({ value: undefined })
+
+function useBytesArray() {
+  const [files, setFiles] = useGlobalState('value');
+
+  function addFiles(a: ArrayBuffer) {
+    const f = files as ArrayBuffer[]
+    f[f.length] = a
+    setFiles(f)
+  }
+
+  return [files, setFiles, addFiles]
+}
 
 function MainApp() {
-  const [, setFiles] = useGlobalState('value');
+  const [, , addFiles] = useBytesArray();
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="about" element={<About />} />
-        <Route path="/" element={<App setFiles={setFiles} />}>
+        <Route path="/" element={<App addFiles={addFiles as (a: ArrayBuffer) => void} />}>
           <Route path="*" element={<>
               <h3>...and i'm converting to...</h3>
               <FileMenu layer={2} />
-              <UploadButton setFiles={setFiles}/>
+              <UploadButton addFiles={addFiles as (a: ArrayBuffer) => void}/>
             </>}>
           </Route>
         </Route>

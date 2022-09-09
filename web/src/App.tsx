@@ -1,5 +1,5 @@
 import { createFFmpeg } from '@ffmpeg/ffmpeg'
-import { ReactElement, SetStateAction, useEffect, useState } from 'react'
+import { ReactElement, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
 import FileMenu from './components/FileMenu'
@@ -11,10 +11,10 @@ const ffmpeg = createFFmpeg({
 })
 
 type Props = {
-  setFiles: (u: SetStateAction<FileList | undefined>) => void
+  addFiles: (a: ArrayBuffer) => void
 }
 
-export default function App({ setFiles }: Props) {
+export default function App({ addFiles }: Props) {
   const path = useLocation().pathname;
   const snail = path.split('/')[1];
 
@@ -56,7 +56,7 @@ export default function App({ setFiles }: Props) {
         <Marble on={ffmpegReady} title="ffmpeg"/>
       </div>
       <h1 className="app-title">noconverter</h1>
-      <UploadButton setFiles={setFiles}/>
+      <UploadButton addFiles={addFiles}/>
       {element}
       <Outlet />
       <div style={{ height: "1em" }} />
