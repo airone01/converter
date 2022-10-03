@@ -11,10 +11,11 @@ const ffmpeg = createFFmpeg({
 })
 
 type Props = {
-  addFiles: (a: ArrayBuffer) => void
+  addFile: (a: ArrayBuffer) => void
+  setFiles: (a: ArrayBuffer[]) => void
 }
 
-export default function App({ addFiles }: Props) {
+export default function App({ addFile, setFiles }: Props) {
   const path = useLocation().pathname;
   const snail = path.split('/')[1];
 
@@ -56,7 +57,7 @@ export default function App({ addFiles }: Props) {
         <Marble on={ffmpegReady} title="ffmpeg"/>
       </div>
       <h1 className="app-title">noconverter</h1>
-      <UploadButton addFiles={addFiles}/>
+      <UploadButton addFile={addFile} setFiles={setFiles as (a: ArrayBuffer[]) => void} />
       {element}
       <Outlet />
       <div style={{ height: "1em" }} />

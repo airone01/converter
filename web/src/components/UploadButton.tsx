@@ -3,11 +3,15 @@ import { useDropzone } from 'react-dropzone'
 import './UploadButton.css'
 
 type Props = {
-  addFiles: (a: ArrayBuffer) => void
+  addFile: (a: ArrayBuffer) => void
+  setFiles: (a: ArrayBuffer[]) => void
 }
 
-export default function UploadButton({ addFiles }: Props) {
+export default function UploadButton({ addFile, setFiles }: Props) {
   const onDrop = useCallback((acceptedFiles: any) => {
+    console.log('called')
+    setFiles([])
+
     acceptedFiles.forEach((file: any) => {
       const reader = new FileReader()
 
@@ -15,7 +19,7 @@ export default function UploadButton({ addFiles }: Props) {
       reader.onerror = () => console.log('Upload failed')
       reader.onload = () => {
         const binaryStr: ArrayBuffer = reader.result as ArrayBuffer
-        console.log(binaryStr)
+        addFile(binaryStr)
       }
       (async () => {
         reader.readAsArrayBuffer(file)
