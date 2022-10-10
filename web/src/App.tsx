@@ -1,4 +1,5 @@
 import { createFFmpeg } from '@ffmpeg/ffmpeg'
+import { PrimitiveAtom } from 'jotai'
 import { ReactElement, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
 import './App.css'
@@ -11,11 +12,10 @@ const ffmpeg = createFFmpeg({
 })
 
 type Props = {
-  addFile: (a: ArrayBuffer) => void
-  setFiles: (a: ArrayBuffer[]) => void
+  atom: PrimitiveAtom<ArrayBuffer>
 }
 
-export default function App({ addFile, setFiles }: Props) {
+export default function App({ atom: fileAtom }: Props) {
   const path = useLocation().pathname;
   const snail = path.split('/')[1];
 
@@ -57,7 +57,7 @@ export default function App({ addFile, setFiles }: Props) {
         <Marble on={ffmpegReady} title="ffmpeg"/>
       </div>
       <h1 className="app-title">noconverter</h1>
-      <UploadButton addFile={addFile} setFiles={setFiles as (a: ArrayBuffer[]) => void} />
+      <UploadButton atom={fileAtom} />
       {element}
       <Outlet />
       <div style={{ height: "1em" }} />
