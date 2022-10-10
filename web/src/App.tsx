@@ -12,7 +12,7 @@ const ffmpeg = createFFmpeg({
 })
 
 type Props = {
-  atom: PrimitiveAtom<ArrayBuffer>
+  atom: PrimitiveAtom<ArrayBuffer[]>
 }
 
 export default function App({ atom: fileAtom }: Props) {

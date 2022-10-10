@@ -12,24 +12,7 @@ import About from './routes/about';
 import UploadButton from './components/UploadButton';
 import { atom } from 'jotai'
 
-// function useBytesArray() {
-//   const [files, setFiles] = useGlobalState('value');
-
-//   function addFile(a: ArrayBuffer) {
-//     if (files.length === 0) {
-//       setFiles([ a ])
-//     } else {
-//       const f = files
-//       f.push(a)
-//       setFiles(f)
-//     }
-//     console.log(`Buffer: ${JSON.stringify(a)}\nFiles: ${JSON.stringify(files)}`)
-//   }
-
-//   return [files, setFiles, addFile]
-// }
-
-const fileAtom = atom(new ArrayBuffer(0));
+const fileAtom = atom([new ArrayBuffer(0)]);
 
 function MainApp() {
   return (

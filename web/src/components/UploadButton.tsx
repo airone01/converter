@@ -1,40 +1,46 @@
-import { PrimitiveAtom } from 'jotai'
+import { PrimitiveAtom, useAtom } from 'jotai'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import './UploadButton.css'
 
 type Props = {
-  atom: PrimitiveAtom<ArrayBuffer>
+  atom: PrimitiveAtom<ArrayBuffer[]>
 }
 
-export default function UploadButton({ atom: fileAtom }: Props) {
+export default function UploadButton({ atom: filesAtom }: Props) {
   const [loading, setLoading] = useState(false)
   const [failed, setFailed] = useState(false)
 
+  const [buffers, setBuffers] = useAtom(filesAtom)
+
   const onDrop = useCallback((files: File[]) => {
-      const reader = new FileReader()
+    const reader = new FileReader()
+    setBuffers([]) // empty the uploads
 
-      files.forEach((file) => {
-        reader.onabort = () => {
-          setLoading(false) 
-          console.log('file reading was aborted')
-        }
-        reader.onerror = (e) => {
-          setLoading(false)
-          setFailed(true)
-          console.log('file reading has failed')
-        }
-        reader.onload = () => {
-          setLoading(false)
-          setFailed(false)
-          const binaryStr = reader.result
-          console.log(binaryStr);
-        }
+    files.forEach((file) => {
+      reader.onabort = () => {
+        setLoading(false) 
+        console.log('file reading was aborted')
+      }
+      reader.onerror = (e) => {
+        setLoading(false)
+        setFailed(true)
+        console.log('file reading has failed')
+      }
+      reader.onload = () => {
+        setLoading(false)
+        setFailed(false)
+        const binaryStr = reader.result
+        const a = buffers
+        a.push(binaryStr as ArrayBuffer)
+        setBuffers(a)
+      }
 
-        reader.readAsArrayBuffer(file)
-        setLoading(true)
-      })
-    }, [])
+      reader.readAsArrayBuffer(file)
+      setLoading(true)
+    })
+  }, [])
+
   const {
     getRootProps,
     getInputProps,
