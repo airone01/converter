@@ -11,36 +11,45 @@ export default function UploadButton({ atom: filesAtom }: Props) {
   const [loading, setLoading] = useState(false)
   const [failed, setFailed] = useState(false)
 
-  const [buffers, setBuffers] = useAtom(filesAtom)
+  const [, setBuffers] = useAtom(filesAtom)
 
-  const onDrop = useCallback((files: File[]) => {
-    const reader = new FileReader()
-    setBuffers(a => []) // empty the uploads
-
-    files.forEach((file) => {
-      reader.onabort = () => {
-        setLoading(false) 
-        console.log('file reading was aborted')
-      }
-      reader.onerror = (e) => {
-        setLoading(false)
-        setFailed(true)
-        console.log('file reading has failed')
-      }
-      reader.onload = () => {
-        setLoading(false)
-        setFailed(false)
-        setBuffers((a) => {
-          a.push(reader.result as ArrayBuffer)
-          return a
-        })
-        console.log(buffers);
-      }
-
-      reader.readAsArrayBuffer(file)
+  const onDrop = useCallback(async (files: File[]) => {
+    return await new Promise(async (resolve) => {
+      const reader = new FileReader()
+      setBuffers(a => []) // empty the uploads
+  
       setLoading(true)
+  
+      for (const file of files) {
+        const res: ArrayBuffer | null = await new Promise((resolve) => {
+          reader.onabort = () => {
+            setLoading(false) 
+            console.log('file reading was aborted')
+            resolve(null)
+          }
+          reader.onerror = (e) => {
+            setLoading(false)
+            setFailed(true)
+            console.log('file reading has failed')
+            resolve(null)
+          }
+          reader.onload = () => {
+            setLoading(false)
+            setFailed(false)
+            resolve(reader.result as ArrayBuffer)
+          }
+    
+          reader.readAsArrayBuffer(file)
+        })
+        if (res !== null) {
+          setBuffers((a) => {
+            a.push(res as ArrayBuffer)
+            return a
+          })
+        }
+      }
     })
-  }, [buffers, setBuffers])
+  }, [setBuffers])
 
   const {
     getRootProps,
