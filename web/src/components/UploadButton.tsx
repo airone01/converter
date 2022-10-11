@@ -15,7 +15,7 @@ export default function UploadButton({ atom: filesAtom }: Props) {
 
   const onDrop = useCallback((files: File[]) => {
     const reader = new FileReader()
-    setBuffers([]) // empty the uploads
+    setBuffers(a => []) // empty the uploads
 
     files.forEach((file) => {
       reader.onabort = () => {
@@ -30,16 +30,17 @@ export default function UploadButton({ atom: filesAtom }: Props) {
       reader.onload = () => {
         setLoading(false)
         setFailed(false)
-        const binaryStr = reader.result
-        const a = buffers
-        a.push(binaryStr as ArrayBuffer)
-        setBuffers(a)
+        setBuffers((a) => {
+          a.push(reader.result as ArrayBuffer)
+          return a
+        })
+        console.log(buffers);
       }
 
       reader.readAsArrayBuffer(file)
       setLoading(true)
     })
-  }, [])
+  }, [buffers, setBuffers])
 
   const {
     getRootProps,
