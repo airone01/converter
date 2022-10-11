@@ -1,7 +1,8 @@
 import FileMenuItem from "./FileMenuItem";
 import { FileFormat } from "../FileType";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import data from '../types.json'
+import { useEffect, useState } from "react";
 
 const config = data as FileFormat[]
 
@@ -11,11 +12,19 @@ interface Props {
 }
 
 export default function FileMenu({ layer }: Props) {
+  const navigate = useNavigate()
+
   const snail = useLocation().pathname.split('/')[1]
-  let items: string[]
-  if (snail !== '') {
-    items = config.find((x) => x.snail === snail)?.accepts as string[]
-  }
+  const [items, setItems] = useState([''])
+
+  useEffect(() => {
+    if (snail !== '') {
+      setItems(() => config.find((x) => x.snail === snail)?.accepts as string[])
+    }
+    if (items === undefined || items[0] === '') navigate('/') // return to menu if wrong url
+    return () => {}
+  }, [snail, items, navigate])
+  
 
   let newConfig: FileFormat[]
   if (layer === 1) {
