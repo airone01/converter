@@ -1,16 +1,17 @@
 import { PrimitiveAtom, useAtom } from 'jotai'
-import { useCallback, useState } from 'react'
+import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import './UploadButton.css'
 
 type Props = {
-  atom: PrimitiveAtom<ArrayBuffer[]>
+  filesAtom: PrimitiveAtom<ArrayBuffer[]>
+  loadingAtom: PrimitiveAtom<boolean>
+  failedAtom: PrimitiveAtom<boolean>
 }
 
-export default function UploadButton({ atom: filesAtom }: Props) {
-  const [loading, setLoading] = useState(false)
-  const [failed, setFailed] = useState(false)
-
+export default function UploadButton({ filesAtom, loadingAtom, failedAtom }: Props) {
+  const [loading, setLoading] = useAtom(loadingAtom)
+  const [failed, setFailed] = useAtom(failedAtom)
   const [, setBuffers] = useAtom(filesAtom)
 
   const onDrop = useCallback(async (files: File[]) => {
@@ -49,7 +50,7 @@ export default function UploadButton({ atom: filesAtom }: Props) {
         }
       }
     })
-  }, [setBuffers])
+  }, [setBuffers, setLoading, setFailed])
 
   const {
     getRootProps,

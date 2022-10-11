@@ -13,18 +13,20 @@ import UploadButton from './components/UploadButton';
 import { atom, PrimitiveAtom } from 'jotai'
 
 // const fileAtom = atom([new ArrayBuffer(0)]);
-const fileAtom = atom([]) as unknown as PrimitiveAtom<ArrayBuffer[]>;
+const fileAtom = atom([]) as unknown as PrimitiveAtom<ArrayBuffer[]>; // strict typing needed for empty arrays
+const loadingAtom = atom(false)
+const failedAtom = atom(false)
 
 function MainApp() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="about" element={<About />} />
-        <Route path="/" element={<App atom={fileAtom} />}>
+        <Route path="/" element={<App loadingAtom={loadingAtom} failedAtom={failedAtom} filesAtom={fileAtom} />}>
           <Route path="*" element={<>
               <h3>...and i'm converting to...</h3>
               <FileMenu layer={2} />
-              {/* <UploadButton atom={fileAtom} /> */}
+              <UploadButton loadingAtom={loadingAtom} failedAtom={failedAtom} filesAtom={fileAtom} />
             </>}>
           </Route>
         </Route>

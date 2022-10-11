@@ -12,10 +12,12 @@ const ffmpeg = createFFmpeg({
 })
 
 type Props = {
-  atom: PrimitiveAtom<ArrayBuffer[]>
+  filesAtom: PrimitiveAtom<ArrayBuffer[]>
+  loadingAtom: PrimitiveAtom<boolean>
+  failedAtom: PrimitiveAtom<boolean>
 }
 
-export default function App({ atom: fileAtom }: Props) {
+export default function App({ filesAtom, loadingAtom, failedAtom }: Props) {
   const path = useLocation().pathname;
   const snail = path.split('/')[1];
 
@@ -57,7 +59,7 @@ export default function App({ atom: fileAtom }: Props) {
         <Marble on={ffmpegReady} title="ffmpeg"/>
       </div>
       <h1 className="app-title">noconverter</h1>
-      <UploadButton atom={fileAtom} />
+      <UploadButton loadingAtom={loadingAtom} failedAtom={failedAtom} filesAtom={filesAtom} />
       {element}
       <Outlet />
       <div style={{ height: "1em" }} />
