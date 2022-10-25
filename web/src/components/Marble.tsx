@@ -1,10 +1,10 @@
-type Props = {
+interface Props {
   title: string
   on: boolean
 }
 
-export default function Marble({ title, on }: Props) {
-  const ttip = title + " " + (on ? "loaded" : "loading...")
+export default function Marble ({ title, on }: Props): JSX.Element {
+  const ttip = title + ' ' + (on ? 'loaded' : 'loading...')
 
   return (
     <div className="marble h-4 w-4 translate-y-6 bg-white dark:bg-gray-800 rounded-full" title={ttip}>

@@ -1,17 +1,17 @@
-import FileMenuItem from "./FileMenuItem";
-import { FileFormat } from "../FileType";
-import { useLocation, useNavigate } from "react-router-dom";
+import FileMenuItem from './FileMenuItem'
+import { FileFormat } from '../FileType'
+import { useLocation, useNavigate } from 'react-router-dom'
 import data from '../types.json'
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 
 const config = data as FileFormat[]
 
 // functionnal component properties
 interface Props {
-  layer: 1 | 2,
+  layer: 1 | 2
 }
 
-export default function FileMenu({ layer }: Props) {
+export default function FileMenu ({ layer }: Props): JSX.Element {
   const navigate = useNavigate()
 
   const snail = useLocation().pathname.split('/')[1]
@@ -24,7 +24,6 @@ export default function FileMenu({ layer }: Props) {
     if (items === undefined || items[0] === '') navigate('/') // return to menu if wrong url
     return () => {}
   }, [snail, items, navigate])
-  
 
   let newConfig: FileFormat[]
   if (layer === 1) {
@@ -40,26 +39,27 @@ export default function FileMenu({ layer }: Props) {
 
         switch (e.category) {
           case 'audio':
-            color = e.color || 'var(--file-audio)'
+            color = e.color ?? 'var(--file-audio)'
             break
           case 'image':
-            color = e.color || 'var(--file-image)'
+            color = e.color ?? 'var(--file-image)'
             break
-          default:
           case 'document':
-            color = e.color || 'var(--file-document)'
+          default:
+            color = e.color ?? 'var(--file-document)'
             break
         }
 
-      return (
+        return (
         <FileMenuItem
           layer={layer}
           snail={e.snail}
-          vanity={e.vanity || e.snail.toUpperCase() }
-          icon={e.icon || e.category || 'document'}
+          vanity={e.vanity ?? e.snail.toUpperCase() }
+          icon={e.icon ?? e.category ?? 'document'}
           color={color}
-          category={e.category || 'document'}
+          category={e.category ?? 'document'}
           key={i}
         />
-    )})}</div>);
+        )
+      })}</div>)
 }

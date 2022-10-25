@@ -1,34 +1,34 @@
-import { Link, useLocation } from "react-router-dom";
-import { Category } from "../FileType";
-import SvgImage from "./SvgImage";
+import { Link, useLocation } from 'react-router-dom'
+import { Category } from '../FileType'
+import SvgImage from './SvgImage'
 
 // functionnal component properties
 interface Props {
-  snail: string,
-  vanity: string,
-  icon: Category,
-  category: Category,
-  color: string,
+  snail: string
+  vanity: string
+  icon: Category
+  category: Category
+  color: string
   layer: 1 | 2
 }
 
-export default function FileMenuItem({
+export default function FileMenuItem ({
   snail,
   vanity,
   icon,
   category,
   color,
   layer
-}: Props) {
+}: Props): JSX.Element {
   const correctColor = `var(--file-${category})`
 
   return (
     <Link
       className="select-none"
       style={{
-        display: "inline-block",
-        margin: "0 1rem",
-        marginBottom: "2rem",
+        display: 'inline-block',
+        margin: '0 1rem',
+        marginBottom: '2rem'
       }}
       to={useGetUrl(snail, layer)}
       key={snail}
@@ -36,10 +36,10 @@ export default function FileMenuItem({
       <button
         className={`filemenuitem-${category}`}
         style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "center",
-          alignItems: "center",
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
           // set the border color
           borderColor: useLocation().pathname.split('/')[layer === 1 ? 1 : 3] === snail ? correctColor : undefined
         }}
@@ -53,7 +53,7 @@ export default function FileMenuItem({
 }
 
 // get the url for the button to redirect to
-function useGetUrl(s: string, n: number): string {
+function useGetUrl (s: string, n: number): string {
   const l = useLocation().pathname
 
   if ((l === '/' || n === 1) && l.split('/')[1] !== s) {
@@ -65,9 +65,7 @@ function useGetUrl(s: string, n: number): string {
   } else if (n === 2) {
     // bottom button
     const list = l.split('/')
-    if (list[list.length-1] === s)
-      // already chosen
-      return `/${list[1]}`
+    if (list[list.length - 1] === s) return `/${list[1]}` // already chosen
     // not chosen yet
     list[2] = 'to'
     list[3] = s

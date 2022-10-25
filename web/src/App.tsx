@@ -10,18 +10,18 @@ const ffmpeg = createFFmpeg({
   // corePath: 'https://unpkg.com/@ffmpeg/core@0.11.0/dist/ffmpeg-core.js',
 })
 
-type Props = {
+interface Props {
   filesAtom: PrimitiveAtom<ArrayBuffer[]>
   loadingAtom: PrimitiveAtom<boolean>
   failedAtom: PrimitiveAtom<boolean>
 }
 
-export default function App({ filesAtom, loadingAtom, failedAtom }: Props) {
-  const path = useLocation().pathname;
-  const snail = path.split('/')[1];
+export default function App ({ filesAtom, loadingAtom, failedAtom }: Props): JSX.Element {
+  const path = useLocation().pathname
+  const snail = path.split('/')[1]
 
-  const [ffmpegReady, setFfmpegReady] = useState(false);
-  
+  const [ffmpegReady, setFfmpegReady] = useState(false)
+
   // load ffmpeg (only once)
   useEffect(() => {
     // check if is already loaded
@@ -31,14 +31,14 @@ export default function App({ filesAtom, loadingAtom, failedAtom }: Props) {
     }
     // if not, load it
     (async () => {
-      await ffmpeg.load();
-      setFfmpegReady(true);
+      await (ffmpeg.load())
+      setFfmpegReady(true)
     })()
   }, [])
 
   let element: ReactElement
   if (
-    ((path !== '/about') && (snail.startsWith('a'))) ) {
+    ((path !== '/about') && (snail.startsWith('a')))) {
     element = (<>
       <h3>my file is an...</h3>
       <FileMenu layer={1} />
