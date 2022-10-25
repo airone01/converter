@@ -59,7 +59,7 @@ export default function UploadButton({ filesAtom, loadingAtom, failedAtom }: Pro
   } = useDropzone({onDrop})
 
   return (
-    <button {...getRootProps()} className="uploadButton flex justify-center items-center mx-auto mb-8 py-0 px-2 font-extrabold bg-inherit text-xl border-solid border-2 hover:border-white border-transparent transition-colors ease-in-out duration-300">
+    <button {...getRootProps()} className="uploadButton flex justify-center items-center mx-auto mb-8 py-0 px-2 font-extrabold bg-inherit text-xl border-solid border-2 border-transparent hover:border-gray-800 dark:hover:border-white transition-colors ease-in-out duration-300">
       <input {...getInputProps()} />
       {
         loading ?
