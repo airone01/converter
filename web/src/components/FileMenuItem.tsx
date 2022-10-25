@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { Category } from "../FileType";
 import SvgImage from "./SvgImage";
-import './FileMenuItem.css'
 
 // functionnal component properties
 interface Props {
@@ -25,7 +24,7 @@ export default function FileMenuItem({
 
   return (
     <Link
-      className="lenk"
+      className="select-none"
       style={{
         display: "inline-block",
         margin: "0 1rem",
@@ -47,7 +46,7 @@ export default function FileMenuItem({
         type="button"
       >
         <SvgImage image={icon} color={correctColor} />
-        <p>{vanity}</p>
+        <p className='dark:text-white text-gray-800'>{vanity}</p>
       </button>
     </Link>
   )

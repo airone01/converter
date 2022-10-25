@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "install": "./install-submodules.sh && pnpm i --ignore-scripts --production=false"
+    "start": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "install": "./install-submodules.sh && yarn --ignore-scripts"
   },
   "dependencies": {
     "@ffmpeg/core": "^0.11.0",
@@ -18,25 +17,26 @@
     "@testing-library/user-event": "^13.5.0",
     "@vercel/edge": "^0.0.4",
     "file-type": "^17.1.6",
+    "jotai": "^1.8.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.2",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@types/node": "^18.7.13",
+    "@types/node": "^18.11.5",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.1.0",
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.18",
     "react-hooks-global-state": "^2.0.0",
-    "typescript": "^4.6.4"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "tailwindcss": "^3.2.1",
+    "typescript": "^4.6.4",
+    "vite": "^3.1.8",
+    "vite-plugin-svgr": "^2.2.2",
+    "vite-tsconfig-paths": "^3.5.2"
   },
   "browserslist": {
     "production": [

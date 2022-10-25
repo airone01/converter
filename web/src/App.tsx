@@ -2,7 +2,6 @@ import { createFFmpeg } from '@ffmpeg/ffmpeg'
 import { PrimitiveAtom } from 'jotai'
 import { ReactElement, useEffect, useState } from 'react'
 import { Link, Outlet, useLocation } from 'react-router-dom'
-import './App.css'
 import FileMenu from './components/FileMenu'
 import Marble from './components/Marble'
 import UploadButton from './components/UploadButton'
@@ -39,12 +38,12 @@ export default function App({ filesAtom, loadingAtom, failedAtom }: Props) {
 
   let element: ReactElement
   if (
-    ((path !== "/about") && (snail.startsWith('a'))) ) {
+    ((path !== '/about') && (snail.startsWith('a'))) ) {
     element = (<>
       <h3>my file is an...</h3>
       <FileMenu layer={1} />
     </>)
-  } else if (path !== "/about") {
+  } else if (path !== '/about') {
     element = (<>
       <h3>my file is a...</h3>
       <FileMenu layer={1} />
@@ -54,16 +53,23 @@ export default function App({ filesAtom, loadingAtom, failedAtom }: Props) {
   }
 
   return (
-    <div className="App">
-      <div className='marble-pack'>
-        <Marble on={ffmpegReady} title="ffmpeg"/>
+    <div className='App'>
+      <div className='
+        w-fit
+        flex flex-col items-center justify-center
+        px-8 mb-2
+        mx-auto
+       bg-slate-800 dark:bg-white
+        rounded-3xl
+      '>
+        <Marble on={ffmpegReady} title='ffmpeg'/>
+        <h1 className='m-0 border-0 bg-inherit text-white dark:text-gray-800 lowercase'>NoConverter</h1>
       </div>
-      <h1 className="app-title">noconverter</h1>
       <UploadButton loadingAtom={loadingAtom} failedAtom={failedAtom} filesAtom={filesAtom} />
       {element}
       <Outlet />
-      <div style={{ height: "1em" }} />
-      <Link to="/about" className="about">about this site</Link>
+      <div className='h-4' />
+      <Link to='/about' className='font-bold'>about this site</Link>
     </div>
   )
 }

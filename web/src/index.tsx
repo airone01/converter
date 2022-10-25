@@ -1,3 +1,4 @@
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client'
 import {
   BrowserRouter,
@@ -36,5 +37,7 @@ function MainApp() {
 }
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <MainApp />
+  <StrictMode>
+    <MainApp />
+  </StrictMode>
 )
