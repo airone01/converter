@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "vite",
+    "dev": "vite",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "install": "./install-submodules.sh && yarn --ignore-scripts"
