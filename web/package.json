@@ -10,6 +10,7 @@
     "serve": "vite preview",
     "lint": "clear && npx eslint src/ --ext .tsx",
     "lintfix": "clear && npx eslint src/ --ext .tsx --fix",
+    "test": "jest",
     "install": "./install-submodules.sh && yarn --ignore-scripts"
   },
   "dependencies": {
@@ -40,9 +41,11 @@
     "eslint-plugin-n": "^15.0.0",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.31.10",
+    "jest": "^29.2.2",
     "postcss": "^8.4.18",
     "react-hooks-global-state": "^2.0.0",
     "tailwindcss": "^3.2.1",
+    "ts-jest": "^29.0.3",
     "typescript": "*",
     "vite": "^3.1.8",
     "vite-plugin-svgr": "^2.2.2",

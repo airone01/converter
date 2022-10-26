@@ -1,4 +1,4 @@
-import FileMenuItem from './FileMenuItem'
+import FileMenuItem from './FileMenuItem/FileMenuItem'
 import { FileFormat } from '../FileType'
 import { useLocation, useNavigate } from 'react-router-dom'
 import data from '../types.json'
